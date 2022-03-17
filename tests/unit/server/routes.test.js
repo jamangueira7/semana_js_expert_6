@@ -189,7 +189,6 @@ describe('#Routes - test site for api response', () => {
                 Controller.prototype.getFileStream.name,
             ).mockRejectedValue(new Error('Error:'))
 
-
             await handler(...params.values())
 
             expect(params.response.writeHead).toHaveBeenCalledWith(500)
