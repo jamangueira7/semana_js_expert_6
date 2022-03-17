@@ -8,7 +8,7 @@ import {
 import config from "../../../server/config.js";
 import { handler } from "../../../server/routes.js";
 import TestUtil from "../_util/testUtil.js";
-import {Controller} from "../../../server/controller";
+import { Controller } from "../../../server/controller";
 
 const {
     pages,

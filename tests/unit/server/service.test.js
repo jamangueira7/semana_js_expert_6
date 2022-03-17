@@ -8,12 +8,10 @@ import {
 
 import fs from 'fs'
 import fsPromises from 'fs/promises'
-
-import {
-    Service
-} from '../../../server/service.js'
+import { Service } from '../../../server/service.js'
 import TestUtil from '../_util/testUtil.js'
 import config from '../../../server/config.js'
+
 const {
     dir: {
         publicDirectory

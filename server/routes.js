@@ -68,7 +68,7 @@ function handleError(error, response) {
         return response.end()
     }
 
-    console.log(`caught erro on API ${error.stack}`)
+    logger.error(`caught erro on API ${error.stack}`)
     response.writeHead(500)
     return response.end()
 }
