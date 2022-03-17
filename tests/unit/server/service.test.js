@@ -51,7 +51,7 @@ describe('#Service - test suite for core processing', () => {
         const result = await service.getFileInfo(currentSong)
         const expectedResult = {
             type: '.mp3',
-            name: `${publicDirectory}\\${currentSong}`
+            name: `${publicDirectory}/${currentSong}`
         }
 
         expect(result).toStrictEqual(expectedResult)
