@@ -21,8 +21,6 @@ export class Controller {
             this.service.stopStreamming()
             return result
         }
-
-        return this.service.startStreamming()
     }
 
     async getFileStream(filename) {
