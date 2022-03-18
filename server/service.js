@@ -115,6 +115,10 @@ export class Service {
         )
     }
 
+    stopStreamming() {
+        this.throttleTransform?.end?.()
+    }
+
     createFileStream(filename) {
         return fs.createReadStream(filename)
     }

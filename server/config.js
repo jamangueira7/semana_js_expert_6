@@ -6,13 +6,14 @@ const root = join(currentDir, '../')
 const audioDirectory = join(root, 'audio')
 const publicDirectory = join(root, 'public')
 const songsDirectory = join(audioDirectory, 'songs')
+
 export default {
     port: process.env.PORT || 3000,
     dir: {
         root,
         publicDirectory,
         audioDirectory,
-        songsDirectory: join(audioDirectory, 'songs'),
+        songsDirectory,
         fxDirectory: join(audioDirectory, 'fx')
     },
     pages: {

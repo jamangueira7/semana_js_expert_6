@@ -50,7 +50,7 @@ export default {
                 "server"
             ],
             testMatch: [
-                "**/tests/**/public/**/*.test.js"
+                "**/tests/**/server/**/*.test.js"
             ]
         },
     ]
