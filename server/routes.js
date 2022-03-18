@@ -45,7 +45,8 @@ async function routes(request, response) {
         const {
             stream,
             onClose
-        } = await controller.createClientStream()
+        } = controller.createClientStream()
+
 
         request.once("close", onClose)
         response.writeHead(200, {

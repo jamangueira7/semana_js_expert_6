@@ -43,7 +43,7 @@ services:
     command:
       - npm
       - run
-      - test:coverage
+      - test:cov
     volumes:
       - .:/spotify-radio
       - node_modules:/spotify-radio/node_modules
