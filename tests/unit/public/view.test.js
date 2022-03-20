@@ -34,10 +34,10 @@ describe('#View - test suite for presentation layer', () => {
         jest.restoreAllMocks()
         jest.clearAllMocks()
 
-        /*jest.spyOn(
+        jest.spyOn(
             document,
-            document.getElementById()
-        ).mockReturnValue(makeBtnElement())*/
+            "getElementById()"
+        ).mockReturnValue(makeBtnElement())
     })
 
     test('#changeCommmandBtnsVisibility - given hide=true it should add unassigned class and reset onclick', () => {
@@ -46,17 +46,42 @@ describe('#View - test suite for presentation layer', () => {
 
         jest.spyOn(
             document,
-            document.querySelectorAll.name
+            "querySelectorAll"
         ).mockReturnValue([btn])
 
         view.changeCommandBtnsVisibility()
 
         expect(btn.classList.add).toHaveBeenCalledWith('unassigned')
+        expect(btn.onclick.name).toStrictEqual('onClickReset')
+        expect(() => btn.onclick()).not.toThrow()
     })
-    test.todo('#changeCommmandBtnsVisibility - given hide=true it should remove unassigned class and reset onclick')
-    test.todo('#onLoad')
+    test('#changeCommmandBtnsVisibility - given hide=true it should remove unassigned class and reset onclick', () => {
+        const view = new View()
+        const btn = makeBtnElement()
 
-    test('my test', () => {
-        expect(true).toBeTruthy()
+        jest.spyOn(
+            global.document,
+            "querySelectorAll"
+        ).mockReturnValue([btn])
+
+        view.changeCommandBtnsVisibility(false)
+
+        expect(btn.classList.add).not.toHaveBeenCalled()
+        expect(btn.classList.remove).toHaveBeenCalledWith('unassigned')
+        expect(btn.onclick.name).toStrictEqual('onClickReset')
+        expect(() => btn.onclick()).not.toThrow()
+    })
+    test('#onLoad', () => {
+        const view = new View()
+        const btn = makeBtnElement()
+
+        jest.spyOn(
+            view,
+            view.changeCommandBtnsVisibility.name
+        ).mockReturnValue()
+
+        view.onLoad()
+
+        expect(view.changeCommandBtnsVisibility).toHaveBeenCalled()
     })
 })

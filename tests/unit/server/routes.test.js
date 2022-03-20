@@ -189,7 +189,7 @@ describe('#Routes - test site for api response', () => {
         expect(params.response.writeHead).toHaveBeenCalledWith(
             200, {
                 'Content-Type': 'audio/mpeg',
-                'Accept-Rages': 'bytes',
+                'Accept-Ranges': 'bytes',
             }
         )
 
