@@ -10,8 +10,8 @@ services:
       - run
       - live-reload
     volumes:
-      - .:/semana_js_expert_6
-      - node_modules:/semana_js_expert_6/node_modules
+      - .:/spotify-radio
+      - node_modules:/spotify-radio/node_modules
     ports:
       - 3000:3000
 
@@ -23,8 +23,8 @@ services:
       - run
       - test
     volumes:
-      - .:/semana_js_expert_6
-      - node_modules:/semana_js_expert_6/node_modules
+      - .:/spotify-radio
+      - node_modules:/spotify-radio/node_modules
 
   test-watch:
     image: spotify-radio
@@ -34,8 +34,8 @@ services:
       - run
       - test:watch
     volumes:
-      - .:/semana_js_expert_6
-      - node_modules:/semana_js_expert_6/node_modules
+      - .:/spotify-radio
+      - node_modules:/spotify-radio/node_modules
 
   test-coverage:
     image: spotify-radio
@@ -45,8 +45,8 @@ services:
       - run
       - test:coverage
     volumes:
-      - .:/semana_js_expert_6
-      - node_modules:/semana_js_expert_6/node_modules
+      - .:/spotify-radio
+      - node_modules:/spotify-radio/node_modules
 
 volumes:
   node_modules: {}

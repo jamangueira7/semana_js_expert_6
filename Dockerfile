@@ -5,9 +5,9 @@ RUN apt-get update \
 
 # libsox-fmt-all
 
-WORKDIR /semana_js_expert_6/
+WORKDIR /spotify-radio/
 
-COPY package.json package-lock.json /semana_js_expert_6/
+COPY package.json package-lock.json /spotify-radio/
 
 RUN npm ci --silent
 

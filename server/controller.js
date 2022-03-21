@@ -1,9 +1,9 @@
 import {
     Service
-} from "./service.js"
+} from './service.js'
 import {
     logger
-} from "./util.js"
+} from './util.js'
 
 export class Controller {
     constructor() {
@@ -13,6 +13,7 @@ export class Controller {
     async getFileStream(filename) {
         return this.service.getFileStream(filename)
     }
+
     async handleCommand({ command }) {
         logger.info(`command received: ${command}`)
         const result = {
@@ -20,18 +21,21 @@ export class Controller {
         }
 
         const cmd = command.toLowerCase()
+
         if(cmd.includes('start')) {
-            this.service.startStreamming()
+            this.service.startStreaming()
             return result
         }
 
         if(cmd.includes('stop')) {
-            this.service.stopStreamming()
+            this.service.stopStreaming()
             return result
         }
 
+        const chosenFx = await this.service.readFxByName(cmd)
+        logger.info(`added fx to service: ${chosenFx}`)
+        this.service.appendFxStream(chosenFx)
         return result
-
     }
 
     createClientStream() {

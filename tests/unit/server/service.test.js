@@ -161,13 +161,13 @@ describe('#Service - test suite for core processing', () => {
             "end",
         ).mockReturnValue()
 
-        service.stopStreamming()
+        service.stopStreaming()
         expect(service.throttleTransform.end).toHaveBeenCalled()
     })
 
     test('#stopStreamming - non existing throttleTransform', () => {
         const service = new Service()
-        expect(() => service.stopStreamming()).not.toThrow()
+        expect(() => service.stopStreaming()).not.toThrow()
     })
 
     test('#broadCast - it should write only for active client streams', () => {
@@ -184,7 +184,7 @@ describe('#Service - test suite for core processing', () => {
         service.clientStreams.set('2', client2)
         client2.end()
 
-        const writable = service.broadCast()
+        const writable = service.broadcast()
         // vai mandar somente para o client1 pq o outro desconectou
         writable.write('Hello World')
 
@@ -272,11 +272,11 @@ describe('#Service - test suite for core processing', () => {
 
         jest.spyOn(
             service,
-            service.broadCast.name
+            service.broadcast.name
         ).mockReturnValue(writableBroadCaster)
 
         const expectedThrottle = fallbackBitRate / bitRateDivisor
-        const result = await service.startStreamming()
+        const result = await service.startStreaming()
 
         expect(service.currentBitRate).toEqual(expectedThrottle)
         expect(result).toEqual(expectedResult)
@@ -286,7 +286,7 @@ describe('#Service - test suite for core processing', () => {
         expect(streamsAsync.pipeline).toHaveBeenCalledWith(
             currentReadable,
             service.throttleTransform,
-            service.broadCast()
+            service.broadcast()
         )
     })
 })

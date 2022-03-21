@@ -79,7 +79,7 @@ describe('#Controller - test suite for controller calls', () => {
         test('command stop', async () => {
             jest.spyOn(
                 Service.prototype,
-                Service.prototype.stopStreamming.name,
+                Service.prototype.stopStreaming.name,
             ).mockResolvedValue()
 
             const controller = new Controller()
@@ -90,13 +90,13 @@ describe('#Controller - test suite for controller calls', () => {
             expect(result).toStrictEqual({
                 result: 'ok'
             })
-            expect(Service.prototype.stopStreamming).toHaveBeenCalled()
+            expect(Service.prototype.stopStreaming).toHaveBeenCalled()
         })
 
         test('command start', async () => {
             jest.spyOn(
                 Service.prototype,
-                Service.prototype.startStreamming.name,
+                Service.prototype.startStreaming.name,
             ).mockResolvedValue()
 
             const controller = new Controller()
@@ -107,13 +107,13 @@ describe('#Controller - test suite for controller calls', () => {
             expect(result).toStrictEqual({
                 result: 'ok'
             })
-            expect(Service.prototype.startStreamming).toHaveBeenCalled()
+            expect(Service.prototype.startStreaming).toHaveBeenCalled()
         })
 
         test('non existing command', async () => {
             jest.spyOn(
                 Service.prototype,
-                Service.prototype.startStreamming.name,
+                Service.prototype.startStreaming.name,
             ).mockResolvedValue()
 
             const controller = new Controller()
@@ -124,7 +124,7 @@ describe('#Controller - test suite for controller calls', () => {
             expect(result).toStrictEqual({
                 result: 'ok'
             })
-            expect(Service.prototype.startStreamming).not.toHaveBeenCalled()
+            expect(Service.prototype.startStreaming).not.toHaveBeenCalled()
         })
     })
 

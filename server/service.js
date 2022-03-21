@@ -3,21 +3,25 @@ import fsPromises from 'fs/promises'
 import { randomUUID } from 'crypto'
 import config from './config.js'
 import { PassThrough, Writable } from 'stream'
+import { once } from 'events'
 import streamsPromises from 'stream/promises'
 import Throttle from 'throttle'
-import { join, extname } from 'path'
 import childProcess from 'child_process'
 import { logger } from './util.js'
-import { once } from 'events'
+import path, { join, extname } from 'path'
 
 const {
     dir: {
-        publicDirectory
+        publicDirectory,
+        fxDirectory
     },
     constants: {
         fallbackBitRate,
         englishConversation,
-        bitRateDivisor
+        bitRateDivisor,
+        audioMediaType,
+        songVolume,
+        fxVolume
     }
 } = config
 
@@ -84,9 +88,9 @@ export class Service {
         }
     }
 
-    broadCast() {
+    broadcast() {
         return new Writable({
-            write: (chunk, encoding, cb) => {
+            write: (chunk, enc, cb) => {
                 for (const [id, stream] of this.clientStreams) {
                     //se o cliente desconectou não devemos mais mandar dados para ele
                     if(stream.writableEnded) {
@@ -101,7 +105,7 @@ export class Service {
         })
     }
 
-    async startStreamming() {
+    async startStreaming() {
         logger.info(`starting with ${this.currentSong}`)
         const bitRate = this.currentBitRate = (await this.getBitRate(this.currentSong)) / bitRateDivisor
         const throttleTransform = this.throttleTransform = new Throttle(bitRate)
@@ -109,11 +113,11 @@ export class Service {
         return streamsPromises.pipeline(
             songReadable,
             throttleTransform,
-            this.broadCast()
+            this.broadcast()
         )
     }
 
-    stopStreamming() {
+    stopStreaming() {
         this.throttleTransform?.end?.()
     }
 
@@ -144,5 +148,73 @@ export class Service {
             stream: this.createFileStream(name),
             type
         }
+    }
+
+    async readFxByName(fxName) {
+        const songs = await fsPromises.readdir(fxDirectory)
+        const chosenSong = songs.find(filename => filename.toLowerCase().includes(fxName))
+        if(!chosenSong) {
+            return Promise.reject(`the song ${fxName} wasn't found!`)
+        }
+
+        return path.join(fxDirectory, chosenSong)
+    }
+
+    appendFxStream(fx) {
+        const throttleTransformable = new Throttle(this.currentBitRate)
+        streamsPromises.pipeline(
+            throttleTransformable,
+            this.broadcast()
+        )
+
+        const unpipe = () => {
+            const transformStream = this.mergeAudioStreams(fx, this.currentReadable)
+            this.throttleTransform = throttleTransformable
+            this.currentReadable = transformStream
+            this.currentReadable.removeListener('unpipe', unpipe)
+
+            streamsPromises.pipeline(
+                transformStream,
+                throttleTransformable
+            )
+        }
+
+        this.throttleTransform.on('unpipe', unpipe)
+        this.throttleTransform.pause()
+        this.currentReadable.unpipe(this.throttleTransform)
+    }
+
+    mergeAudioStreams(song, readable) {
+        const transformStream = PassThrough()
+        const args = [
+            '-t', audioMediaType,
+            '-v', songVolume,
+            //-m => merge -> o - é para receber como stream
+            '-m', '-',
+            '-t', audioMediaType,
+            '-v', fxVolume,
+            song,
+            '-t', audioMediaType,
+            '-'
+        ]
+
+        const {
+            stdout,
+            stdin
+        } = this._executeSoxCommand(args)
+
+        streamsPromises.pipeline(
+            readable,
+            stdin
+        )
+            .catch(error => logger.error(`error on sending stream to sox: ${error}`))
+
+        streamsPromises.pipeline(
+            stdout,
+            transformStream
+        )
+            .catch(error => logger.error(`error on receiving stream from sox: ${error}`))
+
+        return transformStream
     }
 }

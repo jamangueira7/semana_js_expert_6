@@ -1,10 +1,12 @@
-import config from "./config.js"
+import config from './config.js'
 import {
     Controller
-} from "./controller.js"
+} from './controller.js'
 import {
     logger
-} from "./util.js"
+} from './util.js'
+import { once } from 'events'
+
 const {
     location,
     pages: {
@@ -15,7 +17,8 @@ const {
         CONTENT_TYPE
     }
 } = config
-import { once } from 'events'
+
+
 const controller = new Controller()
 async function routes(request, response) {
     const {
@@ -63,7 +66,7 @@ async function routes(request, response) {
             stream,
             onClose
         } = controller.createClientStream()
-        request.once("close", onClose)
+        request.once('close', onClose)
         response.writeHead(200, {
             'Content-Type': 'audio/mpeg',
             'Accept-Rages': 'bytes'
