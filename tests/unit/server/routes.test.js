@@ -44,8 +44,8 @@ describe('#Routes - test site for api response', () => {
         const params = TestUtil.defaultHandleParams()
         params.request.method = 'GET'
         params.request.url = '/home'
-
         const mockFileStream = TestUtil.generateReadableStream(['data'])
+
         jest.spyOn(
             Controller.prototype,
             Controller.prototype.getFileStream.name,
@@ -189,7 +189,7 @@ describe('#Routes - test site for api response', () => {
         expect(params.response.writeHead).toHaveBeenCalledWith(
             200, {
                 'Content-Type': 'audio/mpeg',
-                'Accept-Ranges': 'bytes',
+                'Accept-Rages': 'bytes',
             }
         )
 

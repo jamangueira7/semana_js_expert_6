@@ -37,7 +37,7 @@ export default class View {
         }
     }) {
         await this.onBtnClick(innerText)
-        this.toggleBtnStrat()
+        this.toggleBtnStart()
         this.changeCommandBtnsVisibility(false)
 
         this.buttons()
@@ -67,17 +67,17 @@ export default class View {
             }
         } = btn
 
-        this.toggleDisabledCommandBtn(classList)
+        this.toggleDisableCommandBtn(classList)
         await this.onBtnClick(innerText)
 
         setTimeout(
-            () => this.toggleDisabledCommandBtn(classList),
+            () => this.toggleDisableCommandBtn(classList),
             this.DISABLE_BTN_TIMEOUT
         )
 
     }
 
-    toggleDisabledCommandBtn(classList) {
+    toggleDisableCommandBtn(classList) {
         if(!classList.contains('active')) {
             classList.add('active')
             return
@@ -90,7 +90,7 @@ export default class View {
             innerText
         }
     }) {
-        this.toggleBtnStrat(false)
+        this.toggleBtnStart(false)
         this.changeCommandBtnsVisibility(true)
         return this.onBtnClick(innerText)
     }
@@ -101,7 +101,7 @@ export default class View {
         return !(!!classes.find(item => this.ignoreButtons.has(item)))
     }
 
-    toggleBtnStrat(active = true) {
+    toggleBtnStart(active = true) {
         if(active) {
             this.btnStart.classList.add('hidden')
             this.btnStop.classList.remove('hidden')

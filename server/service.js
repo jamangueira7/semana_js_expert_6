@@ -207,13 +207,13 @@ export class Service {
             readable,
             stdin
         )
-            .catch(error => logger.error(`error on sending stream to sox: ${error}`))
+            //.catch(error => logger.error(`error on sending stream to sox: ${error}`))
 
         streamsPromises.pipeline(
             stdout,
             transformStream
         )
-            .catch(error => logger.error(`error on receiving stream from sox: ${error}`))
+            //.catch(error => logger.error(`error on receiving stream from sox: ${error}`))
 
         return transformStream
     }

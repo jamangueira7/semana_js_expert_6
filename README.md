@@ -1,65 +1,75 @@
-# Spotify Radio - Semana JS Expert 6.0
+<p align="center">
+  <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-rodar">Como rodar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-contribuir">Como contribuir</a>&nbsp;&nbsp;&nbsp;
+  </p>
 
-Seja bem vindo(a) à sexta Semana Javascript Expert. Este é o código inicial para iniciar nossa jornada.
+<br>
 
-Marque esse projeto com uma estrela 🌟
+# Spotify Radio
 
-## Preview
+## 🚀 Tecnologias
 
-<img src="./prints/demo.png" />
+Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-## Checklist Features
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) 
+- [HTML5](https://developer.mozilla.org/pt-BR/docs/Web/HTML/HTML5) 
+- [CSS3](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
+- [Yarn](https://yarnpkg.com/) 
+- [NPM](https://www.npmjs.com/) - 8.5.2
+- [Docker](https://www.docker.com/) - 20.10.13, build a224086
 
-- Web API
-    - [ ] Deve atingir 100% de cobertura de código em testes
-    - [ ] Deve ter testes de integração validando todas as rotas da API
-    - [ ] Deve entregar arquivos estáticos como Node.js Stream
-    - [ ] Deve entregar arquivos de música como Node.js Stream
-    - [ ] Dado um usuário desconectado, não deve quebrar a API
-    - [ ] Mesmo que vários comandos sejam desparados ao mesmo tempo, não deve quebrar a API
-    - [ ] Caso aconteça um erro inesperado, a API deve continuar funcionando
-    - [ ] O projeto precisa ser executado em ambientes Linux, Mac e Windows
 
-- Web App 
-    - Client
-        - [ ] Deve reproduzir a transmissão
-        - [ ] Não deve pausar se algum efeito for adicionado
-    - Controller
-        - [ ] Deve atingir 100% de cobertura de código em testes
-        - [ ] Deve poder iniciar ou parar uma transmissão 
-        - [ ] Deve enviar comandos para adicionar audio efeitos à uma transmissão
+## 💻 Projeto
 
-## Tarefas por aula
+Esse projeto simula um pagina e um controlador. A pagina roda o audio e o controlador pode fazer o seguintes comandos:
+- Start - tocar o audio
+- Pause - parar o audio
+- Applause - add aplauso no audio
+- Audience Applause - add aplausos no audio
+- Boo! - add vaias no audio
+- Fart - add peido no audio
+- Laughing - add risadas no audio
 
-- Aula 01: Cobrir as camadas service e route com testes unitários e alcançar 100% de code coverage
-- Aula 02: Manter 100% de code coverage e implementar testes e2e para toda a API
-- Aula 03: implementar testes unitários para o frontend e manter 100% de code coverage
-- **PLUS**: 
-    - [ ] disponibilizar um novo efeito
-        - [ ] adicionar um botão novo no controlador
-        - [ ] adicionar um som de efeito novo para a pasta `audios/fx/`
-        - [ ] republicar no heroku
+Pagina principal - http://localhost:3000/home
+Controles - http://localhost:3000/controller
 
-### Considerações
-- Tire suas dúvidas sobre os desafios em nossa comunidade, o objetivo é você aprender de forma divertida. Surgiu dúvidas? Pergunte por lá!
+Porjeto desenvolvido durante a Semana JS Expert 7 pelo canal [Erick Wendel](https://www.youtube.com/channel/UCh84012dEUE076wM2CVFN9A)
 
-- Ao completar qualquer um dos desafios, envie no canal **#desafios** da comunidade no **Discord**
+<p align="center">
+  <img alt="game" src=".github/demo.png">
+</p>
 
-### Créditos aos áudios usados
+Cobertura de teste no codigo
+<p align="center">
+  <img alt="game" src=".github/demo.png">
+</p>
 
-#### Transmissão 
-- [English Conversation](https://youtu.be/ytmMipczEI8)
+Testes
+<p align="center">
+  <img alt="game" src=".github/test.PNG">
+</p>
 
-#### Efeitos
-- [Applause](https://youtu.be/mMn_aYpzpG0)
-- [Applause Audience](https://youtu.be/3IC76o_lhFw)
-- [Boo](https://youtu.be/rYAQN11a2Dc)
-- [Fart](https://youtu.be/4PnUfYhbDDM)
-- [Laugh](https://youtu.be/TZ90IUrMNCo)
-## FAQ 
-- `NODE_OPTIONS` não é um comando reconhecido pelo sistema, o que fazer?
-    - Se você estiver no Windows, a forma de criar variáveis de ambiente é diferente. Você deve usar a palavra `set` antes do comando. 
-    - Ex: `    "test": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --runInBand",`
+[Projeto original](https://github.com/ErickWendel/semana-javascript-expert06)
 
-- Rodei `npm test` mas nada acontece, o que fazer?
-    - Verifique a versão do seu Node.js. Estamos usando na versão 17. Entre no [site do node.js](https://nodejs.org) e baixe a versão mais recente.
+## 🚀 Como Rodar
+
+- Clone o projeto.
+- Entre na pasta do projeto e rode "npm ci --silen".
+- Para rodar o projeto "npm run live-reload:docker".
+- Para rodar o test "npm run test:docker".
+- Para rodar o coverage "npm run test:coverage:docker".
+
+## 🤔 Como contribuir
+
+- Faça um fork desse repositório;
+- Cria uma branch com a sua feature: `git checkout -b minha-feature`;
+- Faça commit das suas alterações: `git commit -m 'feat: Minha nova feature'`;
+- Faça push para a sua branch: `git push origin minha-feature`.
+
+Depois que o merge da sua pull request for feito, você pode deletar a sua branch.
+
+## 📝 Licença
+
+Esse projeto está sob a licença MIT.
