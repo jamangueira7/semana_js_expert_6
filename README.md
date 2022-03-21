@@ -23,7 +23,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-Esse projeto simula um pagina e um controlador. A pagina roda o audio e o controlador pode fazer o seguintes comandos:
+Esse projeto simula uma página para tocar o audio e uma pagina para controlar o audio e adicionar efeitos. A página roda o audio e o controlador pode add os seguintes efeitos:
 - Start - tocar o audio
 - Pause - parar o audio
 - Applause - add aplauso no audio
@@ -32,10 +32,10 @@ Esse projeto simula um pagina e um controlador. A pagina roda o audio e o contro
 - Fart - add peido no audio
 - Laughing - add risadas no audio
 
-Pagina principal - http://localhost:3000/home
+Página principal - http://localhost:3000/home
 Controles - http://localhost:3000/controller
 
-Porjeto desenvolvido durante a Semana JS Expert 7 pelo canal [Erick Wendel](https://www.youtube.com/channel/UCh84012dEUE076wM2CVFN9A)
+Porjeto desenvolvido durante a Semana JS Expert 6 pelo canal [Erick Wendel](https://www.youtube.com/channel/UCh84012dEUE076wM2CVFN9A)
 
 <p align="center">
   <img alt="game" src=".github/demo.png">
@@ -43,7 +43,7 @@ Porjeto desenvolvido durante a Semana JS Expert 7 pelo canal [Erick Wendel](http
 
 Cobertura de teste no codigo
 <p align="center">
-  <img alt="game" src=".github/demo.png">
+  <img alt="game" src=".github/coverage.PNG">
 </p>
 
 Testes
